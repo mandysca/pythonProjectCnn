@@ -11,7 +11,8 @@ print(tf.__version__)
 # ------------------------------- Part 1 - Data pre-processing -------------------------------
 
 # processing the training set
-# apply transformation on training set to over feeding 
+# apply transformation on training set to over feeding, augument diversity of the images
+
 
 # processing the test set
 
