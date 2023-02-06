@@ -12,7 +12,19 @@ print(tf.__version__)
 
 # processing the training set
 # apply transformation on training set to over feeding, augument diversity of the images
+# Initiated a object of class Image Data Generator
+train_datagen = ImageDataGenerator(
+    rescale = 1/.255,
+    shear_range= 0.2,
+    zoom_range= 0.2,
+    horizontal_flip= True)
 
+# call method from the object
+train_set = train_datagen.flow_from_directory(
+    'data/training_set',
+    target_size= (150,150),
+    batch_size = 32,
+    class_mode = 'binary')
 
 # processing the test set
 
