@@ -12,7 +12,10 @@ print(tf.__version__)
 
 # processing the training set
 # apply transformation on training set to over feeding, augument diversity of the images
-# Initiated a object of class Image Data Generator
+# Initiated an object of class Image Data Generator
+
+# https://keras.io/api/preprocessing/image/
+
 train_datagen = ImageDataGenerator(
     rescale = 1/.255,
     shear_range= 0.2,
@@ -27,6 +30,15 @@ train_set = train_datagen.flow_from_directory(
     class_mode = 'binary')
 
 # processing the test set
+
+test_datagen = ImageDataGenerator(rescale=1/.255)
+
+test_set = test_datagen.flow_from_directory(
+    'data/validation',
+    target_size= (150, 150),
+    batch_size= 32,
+    class_mode= 'binary'
+)
 
 
 # ------------------------------- Part 2 - Building CNN -------------------------------
