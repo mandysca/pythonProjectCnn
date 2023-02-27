@@ -42,7 +42,7 @@ test_set = test_datagen.flow_from_directory(
 
 # ------------------------------- Part 2 - Building CNN -------------------------------
 
-# initialize the CNN model
+# step - 1 : initialize the CNN model
 cnn = tf.keras.models.Sequential()
 
 # Kernel size is the size of filter detector
@@ -54,10 +54,26 @@ cnn.add(tf.keras.layers.Conv2D(
     input_shape= [64, 64, 3])
 )
 
+# step - 2 : Pooling
+# Max Pooling is used to reduce the size of the feature map
+cnn.add(tf.keras.layers.MaxPool2D(pool_size= 2, strides= 2))
+
+# add a second convolutional layer
+cnn.add(tf.keras.layers.Conv2D(filters=32, kernel_size= 3, activation= 'relu'))
+cnn.add(tf.keras.layers.MaxPool2D(pool_size= 2, strides= 2))
+
+# step - 3 : Flattening
+# convert the pooled feature map into a large feature vector
+cnn.add(tf.keras.layers.Flatten()) # input layer
+
+# step - 4 : Full Connection
+# add a fully connected layer
+cnn.add(tf.keras.layers.Dense(units= 128, activation= 'relu'))
+
 
 # ------------------------------- Part 3 - Training CNN -------------------------------
 
-`
+
 
 
 
