@@ -77,7 +77,16 @@ cnn.add(tf.keras.layers.Dense(units= 1, activation= 'sigmoid'))
 # ------------------------------- Part 3 - Training CNN -------------------------------
 
 # compile the CNN
+# optimizer is the algorithm to find the optimal set of weights in the NN that will make the model perform best
+# loss function is the loss function within the stochastic gradient descent algorithm
+# metrics is the performance metric used to evaluate the model
 cnn.compile(optimizer= 'adam', loss= 'binary_crossentropy', metrics= ['accuracy'])
+
+# train the CNN on the training set and evaluate it on the test set
+# epochs is the number of times the entire training set passes through the CNN
+# x is the training set
+# validation_data is the test set
+cnn.fit(x= train_set, validation_data= test_set, epochs= 25)
 
 
 
