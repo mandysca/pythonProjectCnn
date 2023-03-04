@@ -24,7 +24,7 @@ train_datagen = ImageDataGenerator(
 
 # call method from the object
 train_set = train_datagen.flow_from_directory(
-    'data/training_set',
+    'dataset/training_set',
     target_size= (64, 64),
     batch_size = 32,
     class_mode = 'binary')
@@ -34,7 +34,7 @@ train_set = train_datagen.flow_from_directory(
 test_datagen = ImageDataGenerator(rescale=1/.255)
 
 test_set = test_datagen.flow_from_directory(
-    'data/test_set',
+    'dataset/test_set',
     target_size= (64, 64),
     batch_size= 32,
     class_mode= 'binary'
@@ -70,9 +70,14 @@ cnn.add(tf.keras.layers.Flatten()) # input layer
 # add a fully connected layer
 cnn.add(tf.keras.layers.Dense(units= 128, activation= 'relu'))
 
+# step - 5 : Output Layer
+# add the output layer
+cnn.add(tf.keras.layers.Dense(units= 1, activation= 'sigmoid'))
 
 # ------------------------------- Part 3 - Training CNN -------------------------------
 
+# compile the CNN
+cnn.compile(optimizer= 'adam', loss= 'binary_crossentropy', metrics= ['accuracy'])
 
 
 
