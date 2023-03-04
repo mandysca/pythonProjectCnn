@@ -88,7 +88,30 @@ cnn.compile(optimizer= 'adam', loss= 'binary_crossentropy', metrics= ['accuracy'
 # validation_data is the test set
 cnn.fit(x= train_set, validation_data= test_set, epochs= 25)
 
-
-
-
 # ------------------------------- Part 4 - Preditcion -------------------------------
+# predict if a single image is a dog or a cat
+# numpy is a library for scientific computing with Python
+import numpy as np
+
+# keras is a high-level neural networks API, written in Python and capable of running on top of TensorFlow, CNTK, or Theano
+from keras.preprocessing import image
+
+# load the image
+test_image = image.load_img('dataset/single_prediction/cat_or_dog_1.jpg', target_size= (64, 64))
+
+# convert the image to an array
+test_image = image.img_to_array(test_image)
+
+# add a dimension to the array
+test_image = np.expand_dims(test_image, axis= 0)
+
+# predict the image
+result = cnn.predict(test_image)
+train_set.class_indices
+if result[0][0] > 0.5:
+    prediction = 'dog'
+else:
+    prediction = 'cat'
+
+print(prediction)
+
